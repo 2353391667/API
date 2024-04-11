@@ -12,7 +12,7 @@ class ContractAPI:
         self.url_contract = "http://kdtx-test.itheima.net/api/common/upload"
         self.url_add_contract = "http://kdtx-test.itheima.net/api/contract"
 
-    # 添加课程请求
+    # 上传合同请求
     def upload_contract(self, test_data, token):
         return requests.post(url=self.url_contract, files={"file": test_data}, headers={"Authorization": token})
 
