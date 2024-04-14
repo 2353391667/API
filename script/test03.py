@@ -1,9 +1,8 @@
 # 导包
-from KTDX.api.login import LoginAPI
-from KTDX.api.course import CourseAPI
+import KTDX.config as config
 from KTDX.api.contract import ContractAPI
-import requests
-
+from KTDX.api.course import CourseAPI
+from KTDX.api.login import LoginAPI
 
 my_token = None
 # 创建测试类
@@ -55,7 +54,9 @@ class TestContractBusiness:
 
     # 上传合同用例
     def test03_upload_contract(self):
-        f = open("../data/abc.pdf", "rb")
+        # f = open("../data/abc.pdf", "rb")
+        # 引用配置文件的绝对路径
+        f = open(f"{config.BASE_PATH}/data/abc.pdf", "rb")
         add_file = self.contract.upload_contract(test_data=f, token=my_token)
         print(add_file.status_code)
         print(add_file.json())

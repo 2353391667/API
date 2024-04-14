@@ -1,8 +1,9 @@
+import json
+
 import pytest
 
 from KTDX.api.course import CourseAPI
 from KTDX.api.login import LoginAPI
-import json
 
 
 def add_data(json_file):

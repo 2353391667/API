@@ -1,5 +1,3 @@
-import requests
-
 from KTDX.api.login import LoginAPI
 
 

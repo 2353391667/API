@@ -1,6 +1,8 @@
+import json
 import pytest
 from KTDX.api.login import LoginAPI
-import json
+import KTDX.config as config
+
 
 # json数据驱动
 def build_data(json_file):
@@ -32,7 +34,7 @@ class TestLoginAPI:
     def teardown_method(self):
         pass
 
-    @pytest.mark.parametrize("username, password, status,msg,code",build_data(json_file="D:\python_test\KTDX\data\login.json"))
+    @pytest.mark.parametrize("username, password, status,msg,code",build_data(json_file=f"{config.BASE_PATH}\\data\\login.json"))
     def test_login_01(self,username, password, status,msg,code):
         login_data = {
             "username": username,

@@ -34,7 +34,7 @@ class TestSelect:
         assert 200 == res_s.json().get("code")
 
     def test02_select_false(self):
-        select_data = "?name=测试开发课程01"
+        select_data = "?name=Feiyang231"
         res_s = self.select.select_course(test_data=select_data, token=None)
         print(res_s.json())
         # 断言状态码
