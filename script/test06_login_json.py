@@ -9,7 +9,7 @@ def build_data(json_file):
     # 定义外层数据结构框架
     case_data = []
     # 打开JSON文件
-    with open(json_file,"r",encoding="UTF-8") as f:
+    with open(json_file, "r", encoding="UTF-8") as f:
         # 读取json文件中的数据
         json_data = json.load(f)
         for case in json_data:
@@ -19,23 +19,33 @@ def build_data(json_file):
             msg = case.get("msg")
             code = case.get("code")
             # 添加数据
-            case_data.append((username,password,status,msg,code))
+            case_data.append((username, password, status, msg, code))
         # 返回数据
     return case_data
+
+
 class TestLoginAPI:
 
-    def setup_method(self):
+    @pytest.fixture(autouse=True)
+    def fun(self):
+        self.login_api = LoginAPI()
+        # 获取验证码
+        response = self.login_api.gei_verify_code()
+        self.uuid = response.json().get("uuid")
+
+    # def setup_method(self):
         # 实例化类对象
         self.login_api = LoginAPI()
         # 获取验证码
         response = self.login_api.gei_verify_code()
         self.uuid = response.json().get("uuid")
 
-    def teardown_method(self):
+    # def teardown_method(self):
         pass
 
-    @pytest.mark.parametrize("username, password, status,msg,code",build_data(json_file=f"{config.BASE_PATH}\\data\\login.json"))
-    def test_login_01(self,username, password, status,msg,code):
+    @pytest.mark.parametrize("username, password, status,msg,code",
+                             build_data(json_file=f"{config.BASE_PATH}\\data\\login.json"))
+    def test_login_01(self, username, password, status, msg, code):
         login_data = {
             "username": username,
             "password": password,
@@ -49,3 +59,7 @@ class TestLoginAPI:
         assert msg in res_l.text
         # 断言返回的json数据中code值
         assert code == res_l.json().get("code")
+
+
+if __name__ == '__main__':
+    pytest.main()

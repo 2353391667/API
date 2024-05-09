@@ -17,7 +17,7 @@ class TestLoginAPI:
     def test_login_01(self):
         login_data = {
             "username": "admin",
-            "password": "HM_2023_test",
+            "password": " ",
             "code": 2,
             "uuid": self.uuid
         }

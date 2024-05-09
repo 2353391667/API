@@ -1,0 +1,8 @@
+name1:
+  name: 张三
+  name2: 李四
+name3:
+  -
+    a
+    b
+    c

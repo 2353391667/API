@@ -23,8 +23,8 @@ class TestLoginAPI:
     def teardown_method(self):
         pass
 
-    @pytest.mark.parametrize("username, password, status,msg,code",login_data)
-    def test_login_01(self,username, password, status,msg,code):
+    @pytest.mark.parametrize("username, password, status,msg,code", login_data)
+    def test_login_01(self, username, password, status, msg, code):
         login_data = {
             "username": username,
             "password": password,

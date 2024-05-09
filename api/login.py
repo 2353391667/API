@@ -4,7 +4,6 @@
 
 # 导包
 import requests
-
 import KTDX.config as config
 
 
@@ -19,11 +18,14 @@ class LoginAPI:
         # self.url_course = "http://kdtx-test.itheima.net/api/clues/course"
         self.url_course = f"{config.BASE_URL}/api/clues/course"
 
+    # 获取验证码
     def gei_verify_code(self):
         return requests.get(url=self.url_verify)
 
+    # 登录接口
     def login(self, json_data):
         return requests.post(url=self.url_login, json=json_data)
 
+    # 查看课程接口
     def course(self,):
         return requests.post(url=self.url_course,)
